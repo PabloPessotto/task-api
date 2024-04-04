@@ -13,6 +13,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post("/tasks", [TaskController::class, "store"]);
     Route::put("/tasks/{id}", [TaskController::class, "update"]);
     Route::put("/tasks/{id}/status", [TaskController::class, "updateStatus"]);
+    Route::put("/tasks/{id}/index", [TaskController::class, "updateIndex"]);
     Route::delete("/tasks/{id}", [TaskController::class, "destroy"]);
 });
 
