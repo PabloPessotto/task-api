@@ -8,9 +8,45 @@ use Validator;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @OA\Info(
+ *      title="User API",
+ *      version="1.0.0",
+ *      description="User Api Documentation"
+ *  )
+ */
 class RegisterController extends Controller
 {
-
+    /** 
+     *Register
+     * @OA\Post (
+     *     path="/api/register",
+     *     tags={"Auth"},
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="object",
+     *                      @OA\Property(
+     *                          property="name",
+     *                          type="string"
+     *                      ),
+     *                   
+     *                      @OA\Property(
+     *                          property="password",
+     *                          type="string"
+     *                      )
+     *                 ),
+     *                 example={
+     *                     "name":"John",
+     *                     "password":"johnjohn1"
+     *                }
+     *             )
+     *         )
+     *      ),
+     * )
+     */
     public function register(Request $request)
     {
         $validatorUserName = Validator::make($request->all(), [

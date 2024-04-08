@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->text('label')->nullable();
             $table->integer('userId')->nullable();
             $table->string('date')->nullable();
-            $table->integer('index')->nullable();
+            $table->integer('order')->nullable();
         });
     }
 
