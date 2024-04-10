@@ -1,35 +1,2011 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "User API",
-        "description": "User Api Documentation",
+        "title": "tarefas for me",
+        "description": "APIs são baseadas na arquitetura REST e usam os métodos básicos de solicitação HTTP. Para melhor compreensão, os recursos são listados juntamente com seus parâmetros obrigatórios, se houver, e seus exemplos de solicitações e respostas logo abaixo da descrição. As APIs aceitam solicitações de corpo codificado em JSON e retornam dados da mesma forma.",
         "version": "1.0.0"
     },
     "paths": {
-        "/api/register": {
+        "/api/labels": {
+            "get": {
+                "tags": [
+                    "Label"
+                ],
+                "summary": "Labels",
+                "operationId": "2ac7cbc4186e08de3ec96a7898844f10",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "content": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number",
+                                                        "example": 1
+                                                    },
+                                                    "userId": {
+                                                        "type": "number",
+                                                        "example": 1
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2024-04-07T23:15:09.000000Z"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2024-04-07T23:15:09.000000Z"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Label Name"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "Label description"
+                                                    },
+                                                    "color": {
+                                                        "type": "string",
+                                                        "example": "#FFFFFF"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "collectionFormat": "multi"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            },
             "post": {
-                "summary": "Register user",
-                "description": "Register user",
-                "operationId": "25dc775588d2e73b509bcb375d425b27",
+                "tags": [
+                    "Label"
+                ],
+                "summary": "Create new label",
+                "operationId": "02bc8c47faba31d6682c4bafd253f42c",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "color": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Urgente",
+                                    "description": "Description",
+                                    "color": "#FFFFFF"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "content": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "userId": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Label Name"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "Label description"
+                                                },
+                                                "color": {
+                                                    "type": "string",
+                                                    "example": "#FFFFFF"
+                                                }
+                                            },
+                                            "type": "object",
+                                            "collectionFormat": "multi"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/labels/{id}": {
+            "put": {
+                "tags": [
+                    "Label"
+                ],
+                "summary": "Update label",
+                "operationId": "e7b8ab515f4ba489ed5d3bfe4b9b354b",
                 "parameters": [
                     {
-                        "name": "name",
-                        "in": "query",
-                        "description": "name",
-                        "required": true
-                    },
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of label",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "color": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Urgente",
+                                    "description": "Description",
+                                    "color": "#FFFFFF"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "content": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "userId": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Label Name"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "Label description"
+                                                },
+                                                "color": {
+                                                    "type": "string",
+                                                    "example": "#FFFFFF"
+                                                }
+                                            },
+                                            "type": "object",
+                                            "collectionFormat": "multi"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
                     {
-                        "name": "password",
-                        "in": "query",
-                        "description": "name",
-                        "required": true
+                        "token": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Label"
+                ],
+                "summary": "Delete label",
+                "operationId": "2e8f90cafd1d857e5da061c85c627b00",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of label",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
                     }
                 ],
                 "responses": {
-                    "201": {
-                        "description": "OK"
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Register",
+                "operationId": "25dc775588d2e73b509bcb375d425b27",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "John550",
+                                    "password": "johnjohn1"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "content": {
+                                            "properties": {
+                                                "userId": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "John550"
+                                                },
+                                                "token": {
+                                                    "type": "string",
+                                                    "example": "randomtokenasfhajskfhajf398rureuuhfdshk"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Login",
+                "operationId": "82029854b7191d64582592c46e594dfd",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "John550",
+                                    "password": "johnjohn1"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "content": {
+                                            "properties": {
+                                                "userId": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "John550"
+                                                },
+                                                "token": {
+                                                    "type": "string",
+                                                    "example": "randomtokenasfhajskfhajf398rureuuhfdshk"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tasks": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Tasks",
+                "operationId": "c641d93887fb50d557f18a7d11d0fd70",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "content": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number",
+                                                        "example": 1
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2024-04-07T23:15:09.000000Z"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2024-04-07T23:15:09.000000Z"
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Task Title"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "Task Description"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "example": "OPENED"
+                                                    },
+                                                    "userId": {
+                                                        "type": "number",
+                                                        "example": 1
+                                                    },
+                                                    "date": {
+                                                        "type": "string",
+                                                        "example": "07-04-2024"
+                                                    },
+                                                    "order": {
+                                                        "type": "number",
+                                                        "example": 0
+                                                    },
+                                                    "labels": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "number",
+                                                                    "example": 1
+                                                                },
+                                                                "userId": {
+                                                                    "type": "number",
+                                                                    "example": 1
+                                                                },
+                                                                "created_at": {
+                                                                    "type": "string",
+                                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                                },
+                                                                "updated_at": {
+                                                                    "type": "string",
+                                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string",
+                                                                    "example": "Label Name"
+                                                                },
+                                                                "description": {
+                                                                    "type": "string",
+                                                                    "example": "Label description"
+                                                                },
+                                                                "color": {
+                                                                    "type": "string",
+                                                                    "example": "#FFFFFF"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        },
+                                                        "collectionFormat": "multi"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Register task",
+                "operationId": "53feb2a5084021acb62923cf3cd7a873",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "status": {
+                                                "type": "string"
+                                            },
+                                            "labels": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "": {
+                                                            "type": "number",
+                                                            "example": 1
+                                                        }
+                                                    },
+                                                    "type": "number"
+                                                },
+                                                "collectionFormat": "multi"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "title": "Title ",
+                                    "description": "Description",
+                                    "status": "OPENED",
+                                    "date": "07-04-2024",
+                                    "labels": [
+                                        1,
+                                        3
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "content": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Task Title"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "Task Description"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "OPENED"
+                                                },
+                                                "userId": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "example": "07-04-2024"
+                                                },
+                                                "order": {
+                                                    "type": "number",
+                                                    "example": 0
+                                                },
+                                                "labels": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "userId": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "example": "2024-04-07T23:15:09.000000Z"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "string",
+                                                                "example": "2024-04-07T23:15:09.000000Z"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Label Name"
+                                                            },
+                                                            "description": {
+                                                                "type": "string",
+                                                                "example": "Label description"
+                                                            },
+                                                            "color": {
+                                                                "type": "string",
+                                                                "example": "#FFFFFF"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/tasks/{id}": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Get task by id",
+                "operationId": "23615b21f3984fd9361306821c838ad0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of Task",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "content": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Task Title"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "Task Description"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "OPENED"
+                                                },
+                                                "userId": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "example": "07-04-2024"
+                                                },
+                                                "order": {
+                                                    "type": "number",
+                                                    "example": 0
+                                                },
+                                                "labels": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "userId": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "example": "2024-04-07T23:15:09.000000Z"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "string",
+                                                                "example": "2024-04-07T23:15:09.000000Z"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Label Name"
+                                                            },
+                                                            "description": {
+                                                                "type": "string",
+                                                                "example": "Label description"
+                                                            },
+                                                            "color": {
+                                                                "type": "string",
+                                                                "example": "#FFFFFF"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Update task",
+                "operationId": "18e64b4b16cbee264fa84b775e6b7a91",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of Task",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "status": {
+                                                "type": "string"
+                                            },
+                                            "labels": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "number",
+                                                    "example": [
+                                                        "1,2,5"
+                                                    ]
+                                                }
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "title": "Title",
+                                    "description": "Description",
+                                    "status": "OPENED",
+                                    "date": "07-04-2024",
+                                    "labels": [
+                                        1,
+                                        5,
+                                        2
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "content": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Task Title"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "Task Description"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "OPENED"
+                                                },
+                                                "userId": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "example": "07-04-2024"
+                                                },
+                                                "order": {
+                                                    "type": "number",
+                                                    "example": 0
+                                                },
+                                                "labels": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "userId": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "example": "2024-04-07T23:15:09.000000Z"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "string",
+                                                                "example": "2024-04-07T23:15:09.000000Z"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Label Name"
+                                                            },
+                                                            "description": {
+                                                                "type": "string",
+                                                                "example": "Label description"
+                                                            },
+                                                            "color": {
+                                                                "type": "string",
+                                                                "example": "#FFFFFF"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Delete task",
+                "operationId": "2c379aab1f7cf16dbf084cee9978de75",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of Task",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/tasks/{id}/status": {
+            "put": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Update task status",
+                "operationId": "89728a6b0e698c2f44a5d2af5d54caca",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of Task",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "status": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "status": "DOING"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "content": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Task Title"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "Task Description"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "DOING"
+                                                },
+                                                "userId": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "example": "07-04-2024"
+                                                },
+                                                "order": {
+                                                    "type": "number",
+                                                    "example": 0
+                                                },
+                                                "labels": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "userId": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "example": "2024-04-07T23:15:09.000000Z"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "string",
+                                                                "example": "2024-04-07T23:15:09.000000Z"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Label Name"
+                                                            },
+                                                            "description": {
+                                                                "type": "string",
+                                                                "example": "Label description"
+                                                            },
+                                                            "color": {
+                                                                "type": "string",
+                                                                "example": "#FFFFFF"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/tasks/{id}/order": {
+            "put": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Update task order",
+                "operationId": "ac2476152e6e20544e0ac4d2bde7a56e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of Task",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "order": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "order": 0
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "content": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Task Title"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "Task Description"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "OPENED"
+                                                },
+                                                "userId": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "example": "07-04-2024"
+                                                },
+                                                "order": {
+                                                    "type": "number",
+                                                    "example": 0
+                                                },
+                                                "labels": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "userId": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "example": "2024-04-07T23:15:09.000000Z"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "string",
+                                                                "example": "2024-04-07T23:15:09.000000Z"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Label Name"
+                                                            },
+                                                            "description": {
+                                                                "type": "string",
+                                                                "example": "Label description"
+                                                            },
+                                                            "color": {
+                                                                "type": "string",
+                                                                "example": "#FFFFFF"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/task/{task}/labels": {
+            "put": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Update task labels",
+                "operationId": "c46245dfacf771e2f94b0e55264e09e2",
+                "parameters": [
+                    {
+                        "name": "task",
+                        "in": "path",
+                        "description": "ID of Task",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "labels": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                }
+                                            },
+                                            "type": "number"
+                                        },
+                                        "collectionFormat": "multi"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "labels": [
+                                        4,
+                                        5,
+                                        6
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "content": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Task Title"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "Task Description"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "OPENED"
+                                                },
+                                                "userId": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "example": "07-04-2024"
+                                                },
+                                                "order": {
+                                                    "type": "number",
+                                                    "example": 0
+                                                },
+                                                "labels": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "userId": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "example": "2024-04-07T23:15:09.000000Z"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "string",
+                                                                "example": "2024-04-07T23:15:09.000000Z"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Label Name"
+                                                            },
+                                                            "description": {
+                                                                "type": "string",
+                                                                "example": "Label description"
+                                                            },
+                                                            "color": {
+                                                                "type": "string",
+                                                                "example": "#FFFFFF"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Create link task labels",
+                "operationId": "21d94d5c05d6dccbf1d2d210a3c3d798",
+                "parameters": [
+                    {
+                        "name": "task",
+                        "in": "path",
+                        "description": "ID of Task",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "labels": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                }
+                                            },
+                                            "type": "number"
+                                        },
+                                        "collectionFormat": "multi"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "labels": [
+                                        4,
+                                        5,
+                                        6
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "content": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Task Title"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "Task Description"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "OPENED"
+                                                },
+                                                "userId": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "example": "07-04-2024"
+                                                },
+                                                "order": {
+                                                    "type": "number",
+                                                    "example": 0
+                                                },
+                                                "labels": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "userId": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "example": "2024-04-07T23:15:09.000000Z"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "string",
+                                                                "example": "2024-04-07T23:15:09.000000Z"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Label Name"
+                                                            },
+                                                            "description": {
+                                                                "type": "string",
+                                                                "example": "Label description"
+                                                            },
+                                                            "color": {
+                                                                "type": "string",
+                                                                "example": "#FFFFFF"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/task/{task}/labels/{id}": {
+            "delete": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Remove label from task",
+                "operationId": "816c99572bbe3e18b4436d064ff45b8d",
+                "parameters": [
+                    {
+                        "name": "task",
+                        "in": "path",
+                        "description": "ID of Task",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of label",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "content": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2024-04-07T23:15:09.000000Z"
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Task Title"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "Task Description"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "OPENED"
+                                                },
+                                                "userId": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "example": "07-04-2024"
+                                                },
+                                                "order": {
+                                                    "type": "number",
+                                                    "example": 0
+                                                },
+                                                "labels": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "userId": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "example": "2024-04-07T23:15:09.000000Z"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "string",
+                                                                "example": "2024-04-07T23:15:09.000000Z"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Label Name"
+                                                            },
+                                                            "description": {
+                                                                "type": "string",
+                                                                "example": "Label description"
+                                                            },
+                                                            "color": {
+                                                                "type": "string",
+                                                                "example": "#FFFFFF"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "token": {
+                "type": "oauth2",
+                "name": "Authorization"
             }
         }
     }

@@ -10,18 +10,18 @@ use Illuminate\Support\Facades\Auth;
 
 /**
  * @OA\Info(
- *      title="User API",
+ *      title="tarefas for me",
  *      version="1.0.0",
- *      description="User Api Documentation"
+ *      description="APIs são baseadas na arquitetura REST e usam os métodos básicos de solicitação HTTP. Para melhor compreensão, os recursos são listados juntamente com seus parâmetros obrigatórios, se houver, e seus exemplos de solicitações e respostas logo abaixo da descrição. As APIs aceitam solicitações de corpo codificado em JSON e retornam dados da mesma forma."
  *  )
  */
 class RegisterController extends Controller
 {
-    /** 
-     *Register
+    /**
+     * Register
      * @OA\Post (
      *     path="/api/register",
-     *     tags={"Auth"},
+     *     tags={"User"},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",
@@ -32,18 +32,33 @@ class RegisterController extends Controller
      *                          property="name",
      *                          type="string"
      *                      ),
-     *                   
      *                      @OA\Property(
      *                          property="password",
      *                          type="string"
      *                      )
      *                 ),
      *                 example={
-     *                     "name":"John",
+     *                     "name":"John550",
      *                     "password":"johnjohn1"
      *                }
      *             )
      *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="object",
+     *                  @OA\Property(property="code", type="number", example=200),
+     *                  @OA\Property(property="status", type="string", example="success"),
+     *                  @OA\Property(property="message", type="string", example=null),
+     *              ),
+     *              @OA\Property(property="content", type="object",
+     *                   @OA\Property(property="userId", type="number", example=1),
+     *                   @OA\Property(property="name", type="string", example="John550"),
+     *                   @OA\Property(property="token", type="string", example="randomtokenasfhajskfhajf398rureuuhfdshk"),
+     *              ),
+     *          )
      *      ),
      * )
      */
@@ -76,6 +91,51 @@ class RegisterController extends Controller
         return response()->json(['message' => $message, 'content' => $success], 201);
     }
 
+    /**
+     * Login
+     * @OA\Post (
+     *     path="/api/login",
+     *     tags={"User"},
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="object",
+     *                      @OA\Property(
+     *                          property="name",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="password",
+     *                          type="string"
+     *                      )
+     *                 ),
+     *                 example={
+     *                     "name":"John550",
+     *                     "password":"johnjohn1"
+     *                }
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="object",
+     *                  @OA\Property(property="code", type="number", example=200),
+     *                  @OA\Property(property="status", type="string", example="success"),
+     *                  @OA\Property(property="message", type="string", example=null),
+     *              ),
+     *              @OA\Property(property="content", type="object",
+     *                   @OA\Property(property="userId", type="number", example=1),
+     *                   @OA\Property(property="name", type="string", example="John550"),
+     *                   @OA\Property(property="token", type="string", example="randomtokenasfhajskfhajf398rureuuhfdshk"),
+     *              ),
+     *          )
+     *      ),
+     * )
+     */
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [

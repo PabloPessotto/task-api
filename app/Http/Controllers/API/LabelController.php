@@ -11,6 +11,39 @@ use Illuminate\Support\Facades\Auth;
 
 class LabelController extends Controller
 {
+    /**
+     * Labels
+     * @OA\Get (
+     *     path="/api/labels",
+     *     tags={"Label"},
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="object",
+     *                  @OA\Property(property="code", type="number", example=200),
+     *                  @OA\Property(property="status", type="string", example="success"),
+     *                  @OA\Property(property="message", type="string", example=null),
+     *              ),
+     *              @OA\Property(property="content", type="array",collectionFormat="multi",
+     *                    @OA\Items(
+     *                    type="object",
+     *                      @OA\Property(property="id", type="number", example=1),
+     *                      @OA\Property(property="userId", type="number", example=1),
+     *                      @OA\Property(property="created_at", type="string", example="2024-04-07T23:15:09.000000Z"),
+     *                      @OA\Property(property="updated_at", type="string", example="2024-04-07T23:15:09.000000Z"),
+     *                      @OA\Property(property="name", type="string", example="Label Name"),
+     *                      @OA\Property(property="description", type="string", example="Label description"),
+     *                      @OA\Property(property="color", type="string", example="#FFFFFF"),
+     *                ),
+     *              ),
+     *          )
+     *      ),
+     *      security={
+     *         {"token": {}}
+     *     }
+     * )
+     */
     public function index()
     {
         $userId = Auth::guard('api')->user()->getAuthIdentifier();
@@ -20,6 +53,63 @@ class LabelController extends Controller
         return response()->json(["content" => $labels, 'message' => $message]);
     }
 
+    /**
+     * Create new label
+     * @OA\Post (
+     *     path="/api/labels",
+     *     tags={"Label"},
+     * @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="object",
+     *                      @OA\Property(
+     *                          property="name",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="description",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="color",
+     *                          type="string"
+     *                      ),
+     *                 ),
+     *                example={
+     *                      "name" : "Urgente",
+     *                      "description" : "Description",
+     *                      "color" : "#FFFFFF",
+     *                 }
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="object",
+     *                  @OA\Property(property="code", type="number", example=200),
+     *                  @OA\Property(property="status", type="string", example="success"),
+     *                  @OA\Property(property="message", type="string", example=null),
+     *              ),
+     *              @OA\Property(property="content", type="object",collectionFormat="multi",
+     *                  @OA\Property(property="id", type="number", example=1),
+     *                      @OA\Property(property="userId", type="number", example=1),
+     *                      @OA\Property(property="created_at", type="string", example="2024-04-07T23:15:09.000000Z"),
+     *                      @OA\Property(property="updated_at", type="string", example="2024-04-07T23:15:09.000000Z"),
+     *                      @OA\Property(property="name", type="string", example="Label Name"),
+     *                      @OA\Property(property="description", type="string", example="Label description"),
+     *                      @OA\Property(property="color", type="string", example="#FFFFFF"),             
+     * ),
+     *          )
+     *      ),
+     *      security={
+     *         {"token": {}}
+     *     }
+     * )
+     */
     public function store(Request $request)
     {
         $userId = Auth::guard('api')->user()->getAuthIdentifier();
@@ -37,6 +127,73 @@ class LabelController extends Controller
 
     }
 
+    /**
+     * Update label
+     * @OA\Put (
+     *     path="/api/labels/{id}",
+     *     tags={"Label"},
+     * @OA\Parameter(
+     *    description="ID of label",
+     *    in="path",
+     *    name="id",
+     *    required=true,
+     *    example="1",
+     *    @OA\Schema(
+     *       type="integer",
+     *       format="int64"
+     *    )),
+     * @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="object",
+     *                      @OA\Property(
+     *                          property="name",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="description",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="color",
+     *                          type="string"
+     *                      ),
+     *                 ),
+     *                example={
+     *                      "name" : "Urgente",
+     *                      "description" : "Description",
+     *                      "color" : "#FFFFFF",
+     *                 }
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="object",
+     *                  @OA\Property(property="code", type="number", example=200),
+     *                  @OA\Property(property="status", type="string", example="success"),
+     *                  @OA\Property(property="message", type="string", example=null),
+     *              ),
+     *              @OA\Property(property="content", type="object",collectionFormat="multi",
+     *                  @OA\Property(property="id", type="number", example=1),
+     *                      @OA\Property(property="userId", type="number", example=1),
+     *                      @OA\Property(property="created_at", type="string", example="2024-04-07T23:15:09.000000Z"),
+     *                      @OA\Property(property="updated_at", type="string", example="2024-04-07T23:15:09.000000Z"),
+     *                      @OA\Property(property="name", type="string", example="Label Name"),
+     *                      @OA\Property(property="description", type="string", example="Label description"),
+     *                      @OA\Property(property="color", type="string", example="#FFFFFF"),             
+     * ),
+     *          )
+     *      ),
+     *      security={
+     *         {"token": {}}
+     *     }
+     * )
+     */
     public function update(Request $request, $id)
     {
         if (Label::where('id', $id)->exists()) {
@@ -57,6 +214,37 @@ class LabelController extends Controller
         }
     }
 
+    /**
+     * Delete label
+     * @OA\Delete (
+     *     path="/api/labels/{id}",
+     *     tags={"Label"},
+     * @OA\Parameter(
+     *    description="ID of label",
+     *    in="path",
+     *    name="id",
+     *    required=true,
+     *    example="1",
+     *    @OA\Schema(
+     *       type="integer",
+     *       format="int64"
+     *    )),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="object",
+     *                  @OA\Property(property="code", type="number", example=200),
+     *                  @OA\Property(property="status", type="string", example="success"),
+     *                  @OA\Property(property="message", type="string", example=null),
+     *              ),
+     *          )
+     *      ),
+     *      security={
+     *         {"token": {}}
+     *     }
+     * )
+     */
     public function destroy($id)
     {
         if (Label::where('id', $id)->exists()) {
