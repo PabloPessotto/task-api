@@ -56,7 +56,7 @@ class LabelController extends Controller
     /**
      * Create new label
      * @OA\Post (
-     *     path="/api/labels",
+     *     path="/api/label",
      *     tags={"Label"},
      * @OA\RequestBody(
      *         @OA\MediaType(
@@ -130,7 +130,7 @@ class LabelController extends Controller
     /**
      * Update label
      * @OA\Put (
-     *     path="/api/labels/{id}",
+     *     path="/api/label/{id}",
      *     tags={"Label"},
      * @OA\Parameter(
      *    description="ID of label",
@@ -217,7 +217,7 @@ class LabelController extends Controller
     /**
      * Delete label
      * @OA\Delete (
-     *     path="/api/labels/{id}",
+     *     path="/api/label/{id}",
      *     tags={"Label"},
      * @OA\Parameter(
      *    description="ID of label",
